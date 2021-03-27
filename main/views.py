@@ -1,6 +1,10 @@
+import os
 import re
 
+import cv2
 from django.contrib import messages
+from django.core import mail
+from django.core.mail import EmailMessage
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import register
 
@@ -45,6 +49,7 @@ def checkout(request):
             request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
         elif 'order_stuff' in request.POST:
             validate_order(request, request.POST)
+            order_stuff(request.POST)
 
     products_in_cart = request.session.get('cart')
 
@@ -81,6 +86,31 @@ def validate_order(request, form):
         return True
     else:
         return False
+
+
+def order_stuff(form):
+    email = EmailMessage(
+        'Topic',
+        'Thanks for purchasing our toilet paper',
+        'mysterymaninwhitevan@example.com',
+        [form.get('email')]
+    )
+
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    img_path = os.path.join(dir_path, 'static', 'img', '1.jpg')
+
+    img = cv2.imread(img_path)
+    # cv2.imshow('', img)
+
+    # email.attach('dupa.jpg', img, 'image/jpg')
+    # email.attach_file(img_path)
+    email.send(fail_silently=False)
+    # with mail.get_connection() as connection:
+    #     mail.EmailMessage(
+    #         'Topic', 'Thanks for purchasing our toilet paper', 'mysterymaninwhitevan@example.com', [form.get('email')],
+    #         connection=connection,
+    #     ).send()
+
 
 
 @register.filter(name='lookup')
