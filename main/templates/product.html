@@ -1,6 +1,40 @@
 {% extends 'body.html' %}
 {% block content %}
 
-<h1>{{ product.name }}</h1>
+<div class="center">
+    <div class="container">
+        <div class="img">
+            <img src="./img/toiletPaper.jpg" alt="Portrait">
+        </div>
+        <div class="productDescription">
+            <button type="button" class="collapsible">Product Description</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quos odit ullam officiis, quasi
+                mollitia non eligendi quisquam laboriosam hic doloribus illum vero magni, laudantium expedita
+                reiciendis
+                perspiciatis nihil cupiditate!
+            </div>
+            <button type="button" class="collapsible">Composition and Conservation</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quos odit ullam officiis, quasi
+                mollitia non eligendi quisquam laboriosam hic doloribus illum vero magni, laudantium expedita
+                reiciendis
+                perspiciatis nihil cupiditate!
+            </div>
+            <button type="button" class="collapsible">Delivery and Returns</button>
+            <div class="content">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quos odit ullam officiis, quasi
+                mollitia non eligendi quisquam laboriosam hic doloribus illum vero magni, laudantium expedita
+                reiciendis
+                perspiciatis nihil cupiditate!
+            </div>
+        </div>
+        <div class="purchaseForm">
+            <div class="prodName"></div>
+            <div class="prodPrice"></div>
+            <button>Add to Cart</button>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
