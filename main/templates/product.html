@@ -1,40 +1,37 @@
 {% extends 'wrapper.html' %}
 {% block content %}
 
-<div class="center">
-    <div class="container">
-        <div class="img">
-            <img src="./img/toiletPaper.jpg" alt="Portrait">
-        </div>
-        <div class="productDescription">
-            <button type="button" class="collapsible">Product Description</button>
-            <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quos odit ullam officiis, quasi
-                mollitia non eligendi quisquam laboriosam hic doloribus illum vero magni, laudantium expedita
-                reiciendis
-                perspiciatis nihil cupiditate!
+    {% load static %}
+    {% static "" as baseUrl %}
+
+    <div class="center">
+        <div class="container">
+            <div class="img">
+                <img src="{{ baseUrl }}img/{{ element.id }}.jpg" alt="Portrait">
             </div>
-            <button type="button" class="collapsible">Composition and Conservation</button>
-            <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quos odit ullam officiis, quasi
-                mollitia non eligendi quisquam laboriosam hic doloribus illum vero magni, laudantium expedita
-                reiciendis
-                perspiciatis nihil cupiditate!
+            <div class="productDescription">
+                <button type="button" class="collapsible">Product Description</button>
+                <div class="content">
+                    {{ product.description }}
+                </div>
+                <button type="button" class="collapsible">Composition and Conservation</button>
+                <div class="content">
+                    {{ product.composition }}
+                </div>
+                <button type="button" class="collapsible">Delivery and Returns</button>
+                <div class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quos odit ullam officiis, quasi
+                    mollitia non eligendi quisquam laboriosam hic doloribus illum vero magni, laudantium expedita
+                    reiciendis
+                    perspiciatis nihil cupiditate!
+                </div>
             </div>
-            <button type="button" class="collapsible">Delivery and Returns</button>
-            <div class="content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores quos odit ullam officiis, quasi
-                mollitia non eligendi quisquam laboriosam hic doloribus illum vero magni, laudantium expedita
-                reiciendis
-                perspiciatis nihil cupiditate!
+            <div class="purchaseForm">
+                <div class="prodName"></div>
+                <div class="prodPrice"></div>
+                <button>Add to Cart</button>
             </div>
-        </div>
-        <div class="purchaseForm">
-            <div class="prodName"></div>
-            <div class="prodPrice"></div>
-            <button>Add to Cart</button>
         </div>
     </div>
-</div>
 
 {% endblock %}
