@@ -7,7 +7,7 @@
 
     <div class="home" id="home">
         <div class="photo_container">
-            <img src="{% static 'img/toiletPaper.jpg' %}" alt="Portrait">
+            <img src="{% static 'img/toiletPaper.png' %}" alt="Portrait">
         </div>
     </div>
 
@@ -17,7 +17,7 @@
                 <div class="productRow">{% endif %}
 
             <figure>
-                <a href="/product/{{ element.id }}"><img src="{{ baseUrl }}img/{{ element.id }}.jpg" alt=""></a>
+                <a href="/product/{{ element.id }}"><img src="{{ baseUrl }}img/{{ element.id }}.png" alt=""></a>
                 <figcaption>{{ element.name }}</figcaption>
             </figure>
 
