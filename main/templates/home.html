@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>TUTAJ ZACZYNAMY</title>
+    <title>Paperfy</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
@@ -16,31 +16,80 @@
         <div class="menuname">Paperfy</div>
         <div class="wrapper">
             <ul>
-                <li><a href="#contact">Contact </a></li>
-                <li><a href="#interests">Gallery </a></li>
-                <li><a href="#interests">About Us </a></li>
+                <li><a href="#home">Home </a></li>
+                <li><a href="#gallery">Gallery </a></li>
+                <li><a href="#about">About Us </a></li>
             </ul>
         </div>
     </div>
 
-    <div class="info" id="contact">
+    <div class="home" id="home">
         <div class="photo_container">
             <img src="{% static 'img/toiletPaper.jpg' %}" alt="Portrait">
         </div>
+    </div>
 
+    <div class="productList" id="gallery">
+        <div class="productRow">
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+        </div>
+        <div class="productRow">
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+        </div>
+        <div class="productRow">
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+            <figure>
+                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
+                <figcaption>Jednorożcowy papier</figcaption>
+            </figure>
+        </div>
+    </div>
+
+    <div class="footer" id="about">
+        <div class="info">
+            Website created by
+        </div>
         <div class="links">
-            <a href="https://www.facebook.com/profile.php?id=100008604544517"><i class="fab fa-facebook"></i></a>
             <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
             <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
         </div>
-    </div>
-    <div class="products">
-        <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
-        <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
-        <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
-        <img src="{% static 'img/toiletPaper.jpg' %}" alt="">
-    </div>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="links">
 
+        </div>
+    </div>
 
 </body>
 
