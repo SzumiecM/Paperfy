@@ -1,3 +1,6 @@
+import re
+
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import register
 
@@ -40,6 +43,8 @@ def checkout(request):
             del request.session['cart'][request.POST.get('delete_id')]
         elif 'change_id' in request.POST:
             request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
+        elif 'order_stuff' in request.POST:
+            validate_order(request, request.POST)
 
     products_in_cart = request.session.get('cart')
 
@@ -60,6 +65,22 @@ def checkout(request):
                       })
     else:
         return redirect('/')
+
+
+def validate_order(request, form):
+    validated = True
+
+    if not 2 < len(form['first_name']) < 20 or not 2 < len(form['last_name']) < 20:
+        messages.info(request, 'Are u sure it is your real name?')
+        validated = False
+    if not re.fullmatch(r'^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$', form['email']):
+        messages.info(request, 'Invalid email')
+        validated = False
+
+    if validated:
+        return True
+    else:
+        return False
 
 
 @register.filter(name='lookup')

@@ -17,6 +17,18 @@
                 </form>
             {% endfor %}
             <h1>TOTAL: {{ total_to_pay }}</h1>
+            <form method="POST" action=" ">
+                {% csrf_token %}
+                <input name="first_name" placeholder="first name" required>
+                <input name="last_name" placeholder="last_name" required>
+                <input name="email" placeholder="email" required>
+                <button name="order_stuff" type="submit" value="{{ product.id }}">Order</button>
+            </form>
+            {% if messages %}
+                {% for message in messages %}
+                    <h4 style="text-align: center; color: red">{{ message }}</h4>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 
