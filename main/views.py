@@ -36,12 +36,19 @@ def product(request, product_id=None):
 
 def checkout(request):
     products_in_cart = request.session.get('cart')
+    products_from_base = ToiletPaper.objects.filter(id__in=products_in_cart.keys())
+
+    total_to_pay = 0
+
+    for product in products_from_base:
+        total_to_pay += product.price * products_in_cart.get(str(product.id))
 
     return render(request=request,
                   template_name='checkout.html',
                   context={
-                      'products_in_cart': request.session.get('cart'),
-                      'available_products': ToiletPaper.objects.filter(id__in=request.session.get('cart').keys())
+                      'products_in_cart': products_in_cart,
+                      'products_from_base': products_from_base,
+                      'total_to_pay': total_to_pay
                   })
 
 

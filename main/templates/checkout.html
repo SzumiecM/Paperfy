@@ -7,9 +7,11 @@
             {% if not products_in_cart %}
                 <h1>cart is empty</h1>
             {% else %}
-                {% for product in available_products %}
+                {% for product in products_from_base %}
                     <h1>{{ product.name }} -- {{ products_in_cart|lookup:product.id }}</h1>
                 {% endfor %}
+
+                <h1>TOTAL: {{ total_to_pay }}</h1>
             {% endif %}
 
         </div>
