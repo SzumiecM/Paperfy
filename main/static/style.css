@@ -2,7 +2,7 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    background-color: #030724;
+    background-color: white;
     margin: 0 0 0 0;
     font-family: 'Lekton', sans-serif;
 }
@@ -55,8 +55,8 @@ body{
     margin-left: -40px;
 }
 
-
-.info{
+/* home */
+.home{
     height: 84vh;
     padding-top: 16vh;
 }
@@ -72,28 +72,35 @@ body{
     border: 5px solid #7f83bd;
     background-color:#030724;
 }
+
+/* product List */
+.productList{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+figure > img{
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+}
+
+
+/* footer */
+.info{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
 .links{
     display: flex;
     justify-content: center;
     text-align: center;
     color: #7f83bd;
     font-size: 25px;
-    margin-top: 25px;
+    margin-top: 5px;
 }
-
 .links a{
     color: #7f83bd;
     padding: 15px;
-}
-
-
-.products{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-.products > img{
-    width: 20%;
-    height: 20%;
-    padding: 10px;
 }
