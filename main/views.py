@@ -35,21 +35,31 @@ def product(request, product_id=None):
 
 
 def checkout(request):
+    if request.method == 'POST':
+        if 'delete_id' in request.POST:
+            del request.session['cart'][request.POST.get('delete_id')]
+        elif 'change_id' in request.POST:
+            request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
+
     products_in_cart = request.session.get('cart')
-    products_from_base = ToiletPaper.objects.filter(id__in=products_in_cart.keys())
 
-    total_to_pay = 0
+    if products_in_cart:
+        products_from_base = ToiletPaper.objects.filter(id__in=products_in_cart.keys())
 
-    for product in products_from_base:
-        total_to_pay += product.price * products_in_cart.get(str(product.id))
+        total_to_pay = 0
 
-    return render(request=request,
-                  template_name='checkout.html',
-                  context={
-                      'products_in_cart': products_in_cart,
-                      'products_from_base': products_from_base,
-                      'total_to_pay': total_to_pay
-                  })
+        for product in products_from_base:
+            total_to_pay += product.price * products_in_cart.get(str(product.id))
+
+        return render(request=request,
+                      template_name='checkout.html',
+                      context={
+                          'products_in_cart': products_in_cart,
+                          'products_from_base': products_from_base,
+                          'total_to_pay': total_to_pay
+                      })
+    else:
+        return redirect('/')
 
 
 @register.filter(name='lookup')

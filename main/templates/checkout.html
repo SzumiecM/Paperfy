@@ -3,17 +3,20 @@
 
     <div class="center">
         <div class="container">
-
-            {% if not products_in_cart %}
-                <h1>cart is empty</h1>
-            {% else %}
-                {% for product in products_from_base %}
-                    <h1>{{ product.name }} -- {{ products_in_cart|lookup:product.id }}</h1>
-                {% endfor %}
-
-                <h1>TOTAL: {{ total_to_pay }}</h1>
-            {% endif %}
-
+            {% for product in products_from_base %}
+                <h1>{{ product.name }}</h1>
+                <form method="POST" action=" ">
+                    {% csrf_token %}
+                    <input type="number" placeholder="{{ products_in_cart|lookup:product.id }}"
+                           name="product_amount" required>
+                    <button name="change_id" type="submit" value="{{ product.id }}">Change</button>
+                </form>
+                <form method="POST" action=" ">
+                    {% csrf_token %}
+                    <button name="delete_id" type="submit" value="{{ product.id }}">Delete</button>
+                </form>
+            {% endfor %}
+            <h1>TOTAL: {{ total_to_pay }}</h1>
         </div>
     </div>
 
