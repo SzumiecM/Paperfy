@@ -7,7 +7,7 @@
     <div class="center">
         <div class="container">
             <div class="img">
-                <img src="{{ baseUrl }}img/{{ element.id }}.jpg" alt="Portrait">
+                <img src="{{ baseUrl }}img/{{ product.id }}.jpg" alt="Portrait">
             </div>
             <div class="productDescription">
                 <button type="button" class="collapsible">Product Description</button>
@@ -27,9 +27,12 @@
                 </div>
             </div>
             <div class="purchaseForm">
-                <div class="prodName"></div>
-                <div class="prodPrice"></div>
-                <button>Add to Cart</button>
+                <form method="POST" action="/checkout">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <input type="number" placeholder="0" name="product_amount" required>
+                    <button type="submit" id="add_to_cart_button">Add to cart</button>
+                </form>
             </div>
         </div>
     </div>
