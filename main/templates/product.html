@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="purchaseForm">
-                <form method="POST" action="/checkout">
+                <form method="POST" action=" ">
                     {% csrf_token %}
                     <input type="hidden" name="product_id" value="{{ product.id }}">
                     <input type="number" placeholder="0" name="product_amount" required>

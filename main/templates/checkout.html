@@ -1,0 +1,18 @@
+{% extends 'wrapper.html' %}
+{% block content %}
+
+    <div class="center">
+        <div class="container">
+
+            {% if not products_in_cart %}
+                <h1>cart is empty</h1>
+            {% else %}
+                {% for product in available_products %}
+                    <h1>{{ product.name }} -- {{ products_in_cart|lookup:product.id }}</h1>
+                {% endfor %}
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}
