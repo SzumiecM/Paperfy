@@ -1,28 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'body.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Paperfy</title>
-    {% load static %}
-    {% static "" as baseUrl %}
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link href="https://fonts.googleapis.com/css2?family=Lekton&display=swap" rel="stylesheet">
+{% block content %}
 
-</head>
-
-<body>
-<div class="menu">
-    <div class="menuname">Paperfy</div>
-    <div class="wrapper">
-        <ul>
-            <li><a href="#home">Home </a></li>
-            <li><a href="#gallery">Gallery </a></li>
-            <li><a href="#about">About Us </a></li>
-        </ul>
-    </div>
-</div>
+{% load static %}
+{% static "" as baseUrl %}
 
 <div class="home" id="home">
     <div class="photo_container">
@@ -36,7 +17,7 @@
             <div class="productRow">{% endif %}
 
         <figure>
-            <img src="{{ baseUrl }}img/{{ element.id }}.jpg" alt="">
+            <a href="/product/{{ element.id }}"><img src="{{ baseUrl }}img/{{ element.id }}.jpg" alt=""></a>
             <figcaption>{{ element.name }}</figcaption>
         </figure>
 
@@ -44,67 +25,6 @@
             <div>{% endif %}
 
     {% endfor %}
-    {#        <div class="productRow">#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#        </div>#}
-    {#        <div class="productRow">#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#        </div>#}
-    {#        <div class="productRow">#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#            <figure>#}
-    {#                <img src="{% static 'img/toiletPaper.jpg' %}" alt="">#}
-    {#                <figcaption>Jednorożcowy papier</figcaption>#}
-    {#            </figure>#}
-    {#        </div>#}
     </div>
 
-    <div class="footer" id="about">
-        <div class="info">
-            Website created by
-        </div>
-        <div class="links">
-            <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
-        </div>
-        <div class="links">
-            <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
-        </div>
-        <div class="links">
-
-        </div>
-    </div>
-
-</body>
-
-</html>
+{% endblock %}

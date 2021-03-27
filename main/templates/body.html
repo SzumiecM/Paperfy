@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Paperfy</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lekton&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="menu">
+    <div class="menuname">Paperfy</div>
+    <div class="wrapper">
+        <ul>
+            <li><a href="#home">Home </a></li>
+            <li><a href="#gallery">Gallery </a></li>
+            <li><a href="#about">About Us </a></li>
+        </ul>
+    </div>
+</div>
+
+<div>
+{% block content %}
+{% endblock %}
+</div>
+
+<div class="footer" id="about">
+    <div class="info">
+        Website created by
+    </div>
+    <div class="links">
+        <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="links">
+        <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
+    </div>
+    <div class="links">
+
+    </div>
+</div>
+</body>
