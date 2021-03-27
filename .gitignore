@@ -128,4 +128,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+__pycache__/
 /paperfy/settings_secret.py
+/paperfy/settings.py
