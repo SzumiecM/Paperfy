@@ -1,4 +1,5 @@
 import os
+import random
 import re
 
 import cv2
@@ -49,7 +50,7 @@ def checkout(request):
             request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
         elif 'order_stuff' in request.POST:
             if validate_order(request, request.POST):
-                order_stuff(request, request.POST)
+                order_stuff(request, request.POST, request.FILES.get('custom_img'))
                 request.session['cart'] = None
                 messages.info(request, 'Order sent to your email')
                 return redirect('/')
@@ -91,10 +92,11 @@ def validate_order(request, form):
         return False
 
 
-def order_stuff(request, form):
+def order_stuff(request, form, custom_img):
     custom_img_path = None
 
-    if form.get('custom_img'):
+    if custom_img:
+        print('pep')
         custom_img_path = prepare_image(form.get('custom_img'))
 
     products_in_cart = request.session.get('cart')
@@ -129,18 +131,14 @@ You owe us... hihi
     )
 
     if custom_img_path:
-        email.attach('dupa.jpg', img, 'image/jpg')
+        email.attach('dupa.jpg', custom_img_path, 'image/jpg')
         # email.attach_file(img_path)
 
-    email.send(fail_silently=False)
-    # messages.error(request, 'sent')
+        email.send(fail_silently=False)
+        os.remove(custom_img_path)
 
-    # send_mail(
-    #     'dupa',
-    #     'Thanks for purchasing our toilet paper',
-    #     'milosz.sz.m@gmail.com',
-    #     ['milosz.sz.m@gmail.com']
-    # )
+    else:
+        email.send(fail_silently=False)
 
 
 @register.filter(name='lookup')
@@ -153,8 +151,8 @@ def prepare_image(custom_img):
         template[y_offset:y_offset + custom_img.shape[0], x_offset:x_offset + custom_img.shape[1]] = custom_img
         return template
 
-    template = cv2.imread('template_final.jpg')
-    custom_img = cv2.imread('seal.jpg')
+    template = cv2.imread('template.jpg')
+    custom_img = cv2.imread(custom_img)
 
     final_img_size = 372
     custom_img = cv2.resize(custom_img, (final_img_size, final_img_size))
