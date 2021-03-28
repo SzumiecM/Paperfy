@@ -92,19 +92,17 @@ figcaption{
 
 
 /* footer */
-.info{
+.footer{
+    margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     text-align: center;
-}
-.links{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    color: #7f83bd;
+    flex-direction: column;
     font-size: 25px;
-    margin-top: 5px;
+    color: #7f83bd;
 }
+
 .links a{
     color: #7f83bd;
     padding: 15px;
