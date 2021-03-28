@@ -2,25 +2,29 @@
 
 {% block content %}
 
-{% load static %}
-{% static "" as baseUrl %}
-
-<div class="home" id="home">
-    <div class="photo_container">
-        <img src="{% static 'img/logo.png' %}" alt="Portrait">
-        <h1>Make it yourself</h1>
+    {% load static %}
+    {% static "" as baseUrl %}
+    {% if messages %}
+        {% for message in messages %}
+            <h4 style="text-align: center; color: red">{{ message }}</h4>
+        {% endfor %}
+    {% endif %}
+    <div class="home" id="home">
+        <div class="photo_container">
+            <img src="{% static 'img/logo.png' %}" alt="Portrait">
+            <h1>Make it yourself</h1>
+        </div>
     </div>
-</div>
 
-<div class="productList" id="gallery">
-    {% for element in toilet_papers %}
+    <div class="productList" id="gallery">
+        {% for element in toilet_papers %}
 
-    <figure>
-        <a href="/product/{{ element.id }}"><img src="{{ baseUrl }}img/{{ element.name }}.png" alt=""></a>
-        <figcaption>{{ element.name }}</figcaption>
-    </figure>
+            <figure>
+                <a href="/product/{{ element.id }}"><img src="{{ baseUrl }}img/{{ element.name }}.png" alt=""></a>
+                <figcaption>{{ element.name }}</figcaption>
+            </figure>
 
-    {% endfor %}
-</div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
