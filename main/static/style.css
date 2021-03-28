@@ -85,6 +85,11 @@ figure a img{
     height: 80%;
     padding: 10px;
 }
+figcaption{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
 
 
 /* footer */
@@ -106,19 +111,25 @@ figure a img{
     padding: 15px;
 }
 
-/* product page */
-.center{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
+/* product description page */
+
 .container{
-    padding-top: 50px;
-    width: 500px;
+    height: 84vh;
+    padding-top: 16vh;
+    width: 100%;
+    display: flex;
 }
-img{
-    width: 500px;
-    height: 500px;
+.productInfoContainer{
+    flex-direction: column;
+    padding-left: 25vw;
+    padding-right: 10vw;
+}
+.productInfoContainer img{
+    padding-bottom: 2vw;
+}
+.checkoutForm{
+    flex-direction: column;
+
 }
 
 .collapsible {
