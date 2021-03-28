@@ -59,20 +59,19 @@ body{
 /* logo area */
 .home{
     height: 84vh;
-    padding-top: 16vh;
+    padding-top: 25vh;
 }
 .photo_container{
     display: flex;
     justify-content: center;
 }
-.photo_container >img{
-    width: 20%;
-    height: 20%;
-    border-radius: 100%;
-    padding: 10px;
-    border: 5px solid #7f83bd;
-    background-color:#030724;
+.photo_container img{
+padding-right: 5vw;
 }
+.home h1{
+    margin-top: 36.4vh;
+}
+
 
 /* product List */
 .productList{
@@ -84,6 +83,11 @@ figure a img{
     width: 80%;
     height: 80%;
     padding: 10px;
+}
+figcaption{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
 
@@ -106,20 +110,44 @@ figure a img{
     padding: 15px;
 }
 
-/* product page */
-.center{
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
+/* product description page */
+
 .container{
-    padding-top: 50px;
-    width: 500px;
+    height: 84vh;
+    padding-top: 16vh;
+    display: flex;
 }
-img{
-    width: 500px;
-    height: 500px;
+.productInfoContainer{
+    flex-direction: column;
+    padding-left: 25vw;
+    padding-right: 10vw;
 }
+.productInfoContainer img{
+    padding-bottom: 2vw;
+}
+.checkoutForm{
+    flex-direction: column;
+
+}
+.purchaseForm input{
+    width: 10vw;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 1em;
+}
+.purchaseForm button{
+    width: 11.2vw;
+    padding: 10px;
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
 
 .collapsible {
     width: 500px;
@@ -133,7 +161,7 @@ img{
     font-size: 15px;
   }
   
-.active, .collapsible:hover {
+.active, .collapsible, .purchaseForm button, .checkout button:hover {
     background-color: #555;
 }
   
@@ -142,4 +170,35 @@ img{
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
+}
+
+/* checkout*/
+
+.center{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.checkout{
+    height: 84vh;
+    padding-top: 16vh;
+}
+
+.checkout input{
+    width: 10vw;
+    padding: 10px;
+    cursor: pointer;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 1em;
+}
+.checkout button{
+    width: 11.2vw;
+    padding: 10px;
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 15px;
 }
