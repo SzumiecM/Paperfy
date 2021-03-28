@@ -13,7 +13,7 @@ from .models import *
 
 def home(request):
     return render(request=request,
-                  template_name='home.html',
+                  template_name='product_list.html',
                   context={
                       'toilet_papers': ToiletPaper.objects.all()
                   })
@@ -35,7 +35,7 @@ def product(request, product_id=None):
             return redirect('checkout')
 
     return render(request=request,
-                  template_name='product.html',
+                  template_name='product_descr.html',
                   context={
                       'product': ToiletPaper.objects.get(id=product_id)
                   })
