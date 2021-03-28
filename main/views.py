@@ -135,8 +135,8 @@ You owe us... hihi
     )
 
     if custom_img_path:
-        email.attach('dupa.jpg', custom_img_path, 'image/jpg')
-        # email.attach_file(img_path)
+        # email.attach('dupa.jpg', custom_img_path, 'image/jpg')
+        email.attach_file(custom_img)
 
         email.send(fail_silently=False)
         # os.remove(custom_img_path)
