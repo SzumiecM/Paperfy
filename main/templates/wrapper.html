@@ -13,36 +13,35 @@
 
 <body>
 
-<div class="menu">
-    <div class="menuname">Paperfy</div>
-    <div class="wrapper">
-        <ul>
-            <li><a href="/">Home </a></li>
-            <li><a href="/gallery">Gallery </a></li>
-            <li><a href="/about">About Us </a></li>
-        </ul>
+    <div class="menu">
+        <div class="menuname"><a href="/">Paperfy </a></div>
+        <div class="wrapper">
+            <ul>
+                <li><a href="/gallery">Gallery </a></li>
+                <li><a href="#about">About Us </a></li>
+            </ul>
+        </div>
     </div>
-</div>
 
-{% block content %}
-{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-<div class="footer" id="about">
-    <div class="info">
-        Website created by
-    </div>
-    <div class="links">
-        <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
-    </div>
-    <div class="links">
-        <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
-    </div>
-    <div class="links">
+    <div class="footer" id="about">
+        <div class="info">
+            Website created by
+        </div>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="links">
+            <a href="https://www.linkedin.com/in/szumiecmilosz/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/SzumiecM"><i class="fab fa-github"></i></a>
+        </div>
+        <div class="links">
 
+        </div>
     </div>
-</div>
 
-<script src="{% static 'script.js' %}"></script>
+    <script src="{% static 'script.js' %}"></script>
 </body>
