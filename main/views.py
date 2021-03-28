@@ -92,7 +92,7 @@ def order_stuff(form):
     email = EmailMessage(
         'Topic',
         'Thanks for purchasing our toilet paper',
-        'mysterymaninwhitevan@example.com',
+        'paperfy@protonmail.com',
         [form.get('email')]
     )
 
