@@ -139,7 +139,7 @@ You owe us... hihi
         # email.attach_file(img_path)
 
         email.send(fail_silently=False)
-        os.remove(custom_img_path)
+        # os.remove(custom_img_path)
 
     else:
         email.send(fail_silently=False)
@@ -170,7 +170,8 @@ def prepare_image(custom_img):
         template = add_to_template(template, x_offset, y_offset)
         y_offset += final_img_size
 
-    file_name = f'temp_{random.randrange(100000000000000, 999999999999999)}_new.jpg'
+    file_name = os.path.join(
+        PROJECT_ROOT, f'static/img_for_processing/temp_{random.randrange(100000000000000, 999999999999999)}_new.jpg')
     cv2.imwrite(file_name, template)
 
     return file_name
