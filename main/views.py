@@ -49,7 +49,9 @@ def checkout(request):
             request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
         elif 'order_stuff' in request.POST:
             if validate_order(request, request.POST):
-                order_stuff(request.POST)
+                order_stuff(request, request.POST)
+                request.session['cart'] = None
+                messages.info(request, 'Order sent to your email')
                 return redirect('/')
 
     products_in_cart = request.session.get('cart')
@@ -89,15 +91,39 @@ def validate_order(request, form):
         return False
 
 
-def order_stuff(form):
+def order_stuff(request, form):
     custom_img_path = None
 
     if form.get('custom_img'):
         custom_img_path = prepare_image(form.get('custom_img'))
 
+    products_in_cart = request.session.get('cart')
+    products_from_base = ToiletPaper.objects.filter(id__in=products_in_cart.keys())
+
+    total_to_pay = 0
+    order = []
+
+    for product in products_from_base:
+        amount = products_in_cart.get(str(product.id))
+        order.append(f'{product.name}: {amount} --> {product.price*amount} zł')
+        total_to_pay += product.price * amount
+
+    nl = '\n'
+
+    email_body = f'''
+Thanks for purchasing our toilet paper.
+
+Your order is:{nl}
+{nl.join(order)}
+
+Which is {total_to_pay} zł in total to pay. 
+
+You owe us... hihi
+    '''
+
     email = EmailMessage(
         'Your personal paper delivery',
-        'Thanks for purchasing our toilet paper',
+        email_body,
         'milosz.sz.m@gmail.com',
         [form.get('email')]
     )
