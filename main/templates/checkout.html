@@ -1,39 +1,40 @@
 {% extends 'wrapper.html' %}
 {% block content %}
 
-<div class="center">
-    <div class="checkout">
-        {% for product in products_from_base %}
-        <h1>{{ product.name }}</h1>
-        <form method="POST" action=" ">
-            {% csrf_token %}
-            <input type="number" placeholder="{{ products_in_cart|lookup:product.id }}" name="product_amount" required>
-            <button name="change_id" type="submit" value="{{ product.id }}">Change</button>
-        </form>
-        <form method="POST" action=" ">
-            {% csrf_token %}
-            <button name="delete_id" type="submit" value="{{ product.id }}">Delete</button>
-        </form>
-        {% endfor %}
-        <h1>TOTAL: {{ total_to_pay }}</h1>
+    <div class="center">
+        <div class="checkout">
+            {% for product in products_from_base %}
+                <h1>{{ product.name }}</h1>
+                <form method="POST" action=" ">
+                    {% csrf_token %}
+                    <input type="number" placeholder="{{ products_in_cart|lookup:product.id }}" name="product_amount"
+                           value="{{ products_in_cart|lookup:product.id }}" required>
+                    <button name="change_id" type="submit" value="{{ product.id }}">Change</button>
+                </form>
+                <form method="POST" action=" ">
+                    {% csrf_token %}
+                    <button name="delete_id" type="submit" value="{{ product.id }}">Delete</button>
+                </form>
+            {% endfor %}
+            <h1>TOTAL: {{ total_to_pay }}</h1>
 
-        <input class="uploadFile" type="file">
+            <form method="POST" action=" ">
+                {% csrf_token %}
+                <input class="uploadFile" type="file" name="custom_image"><br>
+                <input name="first_name" placeholder="first name" required>
+                <input name="last_name" placeholder="last_name" required>
+                <input name="email" placeholder="email" required>
+                <button name="order_stuff" type="submit" value="{{ product.id }}">Order</button>
+            </form>
 
-        <form method="POST" action=" ">
-            {% csrf_token %}
-            <input name="first_name" placeholder="first name" required>
-            <input name="last_name" placeholder="last_name" required>
-            <input name="email" placeholder="email" required>
-            <button name="order_stuff" type="submit" value="{{ product.id }}">Order</button>
-        </form>
-        {% if messages %}
-        {% for message in messages %}
-        <script>
-            alert('{{ message }}');
-        </script>
-        {% endfor %}
-        {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    <script>
+                        alert('{{ message }}');
+                    </script>
+                {% endfor %}
+            {% endif %}
+        </div>
     </div>
-</div>
 
 {% endblock %}
