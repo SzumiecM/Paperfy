@@ -48,8 +48,8 @@ def checkout(request):
         elif 'change_id' in request.POST:
             request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
         elif 'order_stuff' in request.POST:
-            validate_order(request, request.POST)
-            order_stuff(request, request.POST)
+            if validate_order(request, request.POST):
+                order_stuff(request.POST)
 
     products_in_cart = request.session.get('cart')
 
@@ -88,40 +88,32 @@ def validate_order(request, form):
         return False
 
 
-def order_stuff(request, form):
+def order_stuff(form):
+    custom_img_path = None
+
+    if form.get('custom_img'):
+        custom_img_path = prepare_image(form.get('custom_img'))
+
     email = EmailMessage(
-        'Topic',
-        'Thanks for purchasing our toilet paper',
-        'paperfy@protonmail.com',
-        ['paperfy@protonmail.com']
-    )
-
-    # dir_path = os.path.dirname(os.path.realpath(__file__))
-    # img_path = os.path.join(dir_path, 'static', 'img', '1.jpg')
-
-    # img = cv2.imread(img_path)
-    # cv2.imshow('', img)
-
-    # email.attach('dupa.jpg', img, 'image/jpg')
-    # email.attach_file(img_path)
-
-
-    # email.send(fail_silently=False)
-    # messages.error(request, 'sent')
-
-    send_mail(
-        'dupa',
+        'Your personal paper delivery',
         'Thanks for purchasing our toilet paper',
         'milosz.sz.m@gmail.com',
-        ['milosz.sz.m@gmail.com']
+        [form.get('email')]
     )
 
-    # with mail.get_connection() as connection:
-    #     mail.EmailMessage(
-    #         'Topic', 'Thanks for purchasing our toilet paper', 'mysterymaninwhitevan@example.com', [form.get('email')],
-    #         connection=connection,
-    #     ).send()
+    if custom_img_path:
+        email.attach('dupa.jpg', img, 'image/jpg')
+        # email.attach_file(img_path)
 
+    email.send(fail_silently=False)
+    # messages.error(request, 'sent')
+
+    # send_mail(
+    #     'dupa',
+    #     'Thanks for purchasing our toilet paper',
+    #     'milosz.sz.m@gmail.com',
+    #     ['milosz.sz.m@gmail.com']
+    # )
 
 
 @register.filter(name='lookup')
