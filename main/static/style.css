@@ -2,9 +2,11 @@ html{
     scroll-behavior: smooth;
 }
 body{
-    background-color: white;
+    background-color: #efefef;
     margin: 0 0 0 0;
     font-family: 'Lekton', sans-serif;
+    color: #ff3b3f;
+    font-weight: bold;
 }
 
 /* header */
@@ -19,7 +21,7 @@ body{
 }
 .menuname > a{
     text-decoration: none;
-    color: white;
+    color: #ff3b3f;
     padding-right: 40vw;
     font-size: 30px;
     margin-left: 5%;
@@ -30,7 +32,7 @@ body{
 }
 .wrapper a{
     text-decoration: none;
-    color: white;
+    color: #ff3b3f;
 }
 .wrapper ul{
     list-style: none;
@@ -46,7 +48,8 @@ body{
     font-size: 20px;  
 }
 .wrapper ul li a:hover{
-    color: #7f83bd;
+    color: #fd9798;
+    font-weight: bolder;
 }
 .wrapper ul ul{
     display: none;
@@ -75,6 +78,7 @@ padding-right: 5vw;
 
 /* product List */
 .productList{
+    font-size: 20px;
     padding: 0 10vw 10vw 10vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -100,11 +104,11 @@ figcaption{
     text-align: center;
     flex-direction: column;
     font-size: 25px;
-    color: #7f83bd;
+    color: #ff3b3f;
 }
 
 .links a{
-    color: #7f83bd;
+    color: #ff3b3f;
     padding: 15px;
 }
 
@@ -138,29 +142,29 @@ figcaption{
 .purchaseForm button{
     width: 11.2vw;
     padding: 10px;
-    background-color: #777;
-    color: white;
+    background-color: #030724;
+    color: #efefef;
     cursor: pointer;
     border: none;
     outline: none;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 
 .collapsible {
     width: 500px;
-    background-color: #777;
-    color: white;
+    background-color: white;
+    color: #efefef;
     cursor: pointer;
     padding: 18px;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 15px;
+    font-size: 20px;
   }
   
 .active, .collapsible, .purchaseForm button, .checkout button:hover {
-    background-color: #555;
+    background-color: #030724;
 }
   
 .content {
@@ -193,10 +197,10 @@ figcaption{
 .checkout button{
     width: 11.2vw;
     padding: 10px;
-    background-color: #777;
-    color: white;
+    background-color: #030724;
+    color: #efefef;
     cursor: pointer;
     border: none;
     outline: none;
-    font-size: 15px;
+    font-size: 20px;
 }
