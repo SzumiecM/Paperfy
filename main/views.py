@@ -99,11 +99,11 @@ def validate_order(request, form):
 
 def order_stuff(request, form, custom_img):
     PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-    template_dir_path = os.path.join(PROJECT_ROOT, 'static/img_for_processing')
+    template_dir_path = os.path.join(PROJECT_ROOT, 'for_processing/img_for_processing')
 
     if custom_img is None:
         custom_img_path = random.choice(
-                [os.path.join(PROJECT_ROOT, 'static/img_for_processing', x) for x in os.listdir(template_dir_path)])
+                [os.path.join(PROJECT_ROOT, 'for_processing/img_for_processing', x) for x in os.listdir(template_dir_path)])
     else:
         custom_img_path = prepare_image(custom_img)
 
@@ -160,7 +160,7 @@ def prepare_image(custom_img):
         return template
 
     PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
-    template = cv2.imread(os.path.join(PROJECT_ROOT, 'static/template.jpg'))
+    template = cv2.imread(os.path.join(PROJECT_ROOT, 'for_processing/template.jpg'))
 
     custom_img = custom_img[:, :, :3]
 
@@ -175,7 +175,7 @@ def prepare_image(custom_img):
         y_offset += final_img_size
 
     file_name = os.path.join(
-        PROJECT_ROOT, f'static/img_processed/order_{random.randrange(100000000000000, 999999999999999)}.jpg')
+        PROJECT_ROOT, f'for_processing/img_processed/order_{random.randrange(100000000000000, 999999999999999)}.jpg')
     cv2.imwrite(file_name, template)
 
     return file_name
