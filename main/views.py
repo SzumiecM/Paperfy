@@ -4,7 +4,7 @@ import re
 import cv2
 from django.contrib import messages
 from django.core import mail
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.shortcuts import render, redirect
 from django.template.defaultfilters import register
 
@@ -49,7 +49,7 @@ def checkout(request):
             request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
         elif 'order_stuff' in request.POST:
             validate_order(request, request.POST)
-            order_stuff(request.POST)
+            order_stuff(request, request.POST)
 
     products_in_cart = request.session.get('cart')
 
@@ -88,23 +88,34 @@ def validate_order(request, form):
         return False
 
 
-def order_stuff(form):
+def order_stuff(request, form):
     email = EmailMessage(
         'Topic',
         'Thanks for purchasing our toilet paper',
         'paperfy@protonmail.com',
-        [form.get('email')]
+        ['paperfy@protonmail.com']
     )
 
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    img_path = os.path.join(dir_path, 'static', 'img', '1.jpg')
+    # dir_path = os.path.dirname(os.path.realpath(__file__))
+    # img_path = os.path.join(dir_path, 'static', 'img', '1.jpg')
 
-    img = cv2.imread(img_path)
+    # img = cv2.imread(img_path)
     # cv2.imshow('', img)
 
     # email.attach('dupa.jpg', img, 'image/jpg')
     # email.attach_file(img_path)
-    email.send(fail_silently=False)
+
+
+    # email.send(fail_silently=False)
+    # messages.error(request, 'sent')
+
+    send_mail(
+        'dupa',
+        'Thanks for purchasing our toilet paper',
+        'milosz.sz.m@gmail.com',
+        ['milosz.sz.m@gmail.com']
+    )
+
     # with mail.get_connection() as connection:
     #     mail.EmailMessage(
     #         'Topic', 'Thanks for purchasing our toilet paper', 'mysterymaninwhitevan@example.com', [form.get('email')],
@@ -116,3 +127,27 @@ def order_stuff(form):
 @register.filter(name='lookup')
 def lookup(value, arg):
     return value.get(str(arg))
+
+
+def prepare_image(custom_img):
+    def add_to_template(template, x_offset, y_offset):
+        template[y_offset:y_offset + custom_img.shape[0], x_offset:x_offset + custom_img.shape[1]] = custom_img
+        return template
+
+    template = cv2.imread('template_final.jpg')
+    custom_img = cv2.imread('seal.jpg')
+
+    final_img_size = 372
+    custom_img = cv2.resize(custom_img, (final_img_size, final_img_size))
+    custom_img = cv2.rotate(custom_img, cv2.ROTATE_90_CLOCKWISE)
+
+    x_offset = 286
+    y_offset = 212
+    for _ in range(2):
+        template = add_to_template(template, x_offset, y_offset)
+        y_offset += final_img_size
+
+    file_name = f'temp_{random.randrange(100000000000000,999999999999999)}_new.jpg'
+    cv2.imwrite(file_name, template)
+    
+    return file_name
