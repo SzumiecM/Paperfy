@@ -3,6 +3,7 @@ import random
 import re
 
 import cv2
+import numpy
 from django.contrib import messages
 from django.core import mail
 from django.core.mail import EmailMessage, send_mail
@@ -50,7 +51,11 @@ def checkout(request):
             request.session['cart'][request.POST.get('change_id')] = int(request.POST.get('product_amount'))
         elif 'order_stuff' in request.POST:
             if validate_order(request, request.POST):
-                order_stuff(request, request.POST, request.FILES.get('custom_img'))
+                custom_image = cv2.imdecode(
+                    numpy.fromstring(request.FILES.get('custom_image').read(), numpy.uint8
+                                     ), cv2.IMREAD_UNCHANGED) if request.FILES.get('custom_image') else None
+
+                order_stuff(request, request.POST, custom_image)
                 request.session['cart'] = None
                 messages.info(request, 'Order sent to your email')
                 return redirect('/')
@@ -95,9 +100,8 @@ def validate_order(request, form):
 def order_stuff(request, form, custom_img):
     custom_img_path = None
 
-    if custom_img:
-        print('pep')
-        custom_img_path = prepare_image(form.get('custom_img'))
+    if custom_img is not None:
+        custom_img_path = prepare_image(custom_img)
 
     products_in_cart = request.session.get('cart')
     products_from_base = ToiletPaper.objects.filter(id__in=products_in_cart.keys())
@@ -107,7 +111,7 @@ def order_stuff(request, form, custom_img):
 
     for product in products_from_base:
         amount = products_in_cart.get(str(product.id))
-        order.append(f'{product.name}: {amount} --> {product.price*amount} zł')
+        order.append(f'{product.name}: {amount} --> {product.price * amount} zł')
         total_to_pay += product.price * amount
 
     nl = '\n'
@@ -131,11 +135,11 @@ You owe us... hihi
     )
 
     if custom_img_path:
-        email.attach('dupa.jpg', custom_img_path, 'image/jpg')
-        # email.attach_file(img_path)
+        # email.attach('dupa.jpg', custom_img_path, 'image/jpg')
+        email.attach_file(custom_img)
 
         email.send(fail_silently=False)
-        os.remove(custom_img_path)
+        # os.remove(custom_img_path)
 
     else:
         email.send(fail_silently=False)
@@ -151,8 +155,10 @@ def prepare_image(custom_img):
         template[y_offset:y_offset + custom_img.shape[0], x_offset:x_offset + custom_img.shape[1]] = custom_img
         return template
 
-    template = cv2.imread('template.jpg')
-    custom_img = cv2.imread(custom_img)
+    PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+    template = cv2.imread(os.path.join(PROJECT_ROOT, 'static/img_for_processing/template.jpg'))
+
+    custom_img = custom_img[:, :, :3]
 
     final_img_size = 372
     custom_img = cv2.resize(custom_img, (final_img_size, final_img_size))
@@ -164,7 +170,8 @@ def prepare_image(custom_img):
         template = add_to_template(template, x_offset, y_offset)
         y_offset += final_img_size
 
-    file_name = f'temp_{random.randrange(100000000000000,999999999999999)}_new.jpg'
+    file_name = os.path.join(
+        PROJECT_ROOT, f'static/img_for_processing/temp_{random.randrange(100000000000000, 999999999999999)}_new.jpg')
     cv2.imwrite(file_name, template)
-    
+
     return file_name
