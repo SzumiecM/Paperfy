@@ -50,6 +50,7 @@ def checkout(request):
         elif 'order_stuff' in request.POST:
             if validate_order(request, request.POST):
                 order_stuff(request.POST)
+                return redirect('/')
 
     products_in_cart = request.session.get('cart')
 
