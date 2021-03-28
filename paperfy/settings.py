@@ -123,4 +123,4 @@ STATICFILES_DIRS = (
     ('main/static'),
 )
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django_ses.SESBackend'
