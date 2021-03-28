@@ -185,11 +185,6 @@ figcaption{
     min-height: 84vh;
     padding-top: 16vh;
 }
-.checkoutSection{
-    background-color: #c0c0c0;
-    border-radius: 50px;
-    padding-bottom: 15px;
-}
 
 .checkout input{
     width: 10vw;
