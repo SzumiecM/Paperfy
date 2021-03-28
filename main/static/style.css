@@ -178,7 +178,7 @@ figcaption{
     text-align: center;
 }
 .checkout{
-    height: 84vh;
+    min-height: 84vh;
     padding-top: 16vh;
 }
 
