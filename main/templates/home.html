@@ -2,29 +2,29 @@
 
 {% block content %}
 
-    {% load static %}
-    {% static "" as baseUrl %}
+{% load static %}
+{% static "" as baseUrl %}
 
-    <div class="home" id="home">
-        <div class="photo_container">
-            <img src="{% static 'img/toiletPaper.png' %}" alt="Portrait">
-        </div>
+<div class="home" id="home">
+    <div class="photo_container">
+        <img src="{% static 'img/logo.png' %}" alt="Portrait">
     </div>
+</div>
 
-    <div class="productList" id="gallery">
-        {% for element in toilet_papers %}
-{#            {% if forloop.counter|divisibleby:3 %}#}
-{#                <div class="productRow">{% endif %}#}
+<div class="productList" id="gallery">
+    {% for element in toilet_papers %}
+    {# {% if forloop.counter|divisibleby:3 %}#}
+    {# <div class="productRow">{% endif %}#}
 
-            <figure>
-                <a href="/product/{{ element.id }}"><img src="{{ baseUrl }}img/{{ element.name }}.png" alt=""></a>
-                <figcaption>{{ element.name }}</figcaption>
-            </figure>
+        <figure>
+            <a href="/product/{{ element.id }}"><img src="{{ baseUrl }}img/{{ element.name }}.png" alt=""></a>
+            <figcaption>{{ element.name }}</figcaption>
+        </figure>
 
-{#            {% if forloop.counter|divisibleby:3 and forloop.counter > 1 %}#}
-{#                </div>{% endif %}#}
+        {# {% if forloop.counter|divisibleby:3 and forloop.counter > 1 %}#}
+        <!-- {#</div>{% endif %}#} -->
 
         {% endfor %}
-        </div>
+    </div>
 
-{% endblock %}
+    {% endblock %}
